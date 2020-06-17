@@ -19,8 +19,17 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	
-	public Game(String playerOneName, String playerTwoName) {
-		
+	private static Game instance = null;
+
+    public static Game getInstance(){
+    if(instance == null){
+        instance = new Game();
+    }
+        return instance;
+    }
+	
+	
+	public void createGamePlayers(String playerOneName, String playerTwoName) {
 		//Initialize PlayerOne characters
 		playerOneList.add(new Flag(new int[] {0, 9}));
 		

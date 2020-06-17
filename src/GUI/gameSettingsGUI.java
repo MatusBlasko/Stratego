@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import game.Game;
+import game.Player;
+
 public class gameSettingsGUI extends JPanel implements ActionListener {
 
 	private JLabel titel = new JLabel("Einstellungen");
@@ -63,12 +66,13 @@ public class gameSettingsGUI extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource() == bStart) {
 			
-		if(spieler1Name.getText().equals("") || spieler2Name.getText().equals(""))
-		{
-			System.out.println("Spieler namen müssen angegeben wereden");
-		}else {
-			cl.show(getParent(),"game");
-		}
+			if(spieler1Name.getText().equals("") || spieler2Name.getText().equals(""))
+			{
+				System.out.println("Spieler namen müssen angegeben wereden");
+			}else {
+				Game.getInstance().createGamePlayers(spieler1Name.getText(), spieler2Name.getText());
+				cl.show(getParent(),"game");
+			}
 		}
 		
 		if(e.getSource() == bZurück) {
@@ -76,6 +80,7 @@ public class gameSettingsGUI extends JPanel implements ActionListener {
 		}
 		
 	}
+	
 	
 	public void setFontSizetoMaximum(JLabel label){
 		Font labelFont = label.getFont();
