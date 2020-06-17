@@ -1,10 +1,11 @@
+package GUI;
 import java.util.ArrayList;
 
 public class Starter {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+	/*	
 		ArrayList<Character> p1c = new ArrayList<Character>();
 		ArrayList<Character> p2c = new ArrayList<Character>();
 		
@@ -20,6 +21,7 @@ public class Starter {
 		//Game Class
 		
 		System.out.println(p1.getCharacterByPosition(new int[] {5, 4}).move(p1, p2, 2));
+		*/
 		ContainerGUI container = new ContainerGUI();
 	
 	}

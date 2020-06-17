@@ -1,3 +1,4 @@
+package GUI;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +16,16 @@ public class ContainerGUI extends JFrame implements ActionListener {
 		MainGUI MainGUI = new MainGUI(cl);
 		add(MainGUI,"main");
 		gameSettingsGUI gameSettings = new gameSettingsGUI(cl); 
-		add(gameSettings, "a");
+		add(gameSettings, "gameSettings");
+		
+		gameGUI gameGUI = new gameGUI(cl); 
+		add(gameGUI, "game");
 		
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		setSize(600,400);
+		setResizable(false);
+		setSize(800,800);
 		setVisible(true);	
 
 	}
