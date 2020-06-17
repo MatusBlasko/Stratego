@@ -70,56 +70,70 @@ public abstract class Character {
 	 * @param player
 	 * @param opponent
 	 * @param destination
-	 * @return
+	 * @return flase if occupied by player, null if occupied by opponent and true if free
 	 */
 	public boolean move(Player player, Player opponent, int destination) {
 		
 		//initialize new position
-		int[] tempPosition = this.getPosition().clone();
+		int[] newPosition = this.getPosition().clone();
 		
 		//calculate new position
 		switch(destination) {
-			case 0: tempPosition[1] = tempPosition[1]+1; break;
-			case 1: tempPosition[0] = tempPosition[0]+1; break;
-			case 2: tempPosition[1] = tempPosition[1]-1; break;
-			case 3: tempPosition[0] = tempPosition[0]-1; break;
+			case 0: newPosition[1] = newPosition[1]+1; break;
+			case 1: newPosition[0] = newPosition[0]+1; break;
+			case 2: newPosition[1] = newPosition[1]-1; break;
+			case 3: newPosition[0] = newPosition[0]-1; break;
 		}
 		
 		//get Characters
-		Character playersCharacter = player.getCharacterByPosition(tempPosition);
-		Character opponentsCharacter = opponent.getCharacterByPosition(tempPosition);
+		Character playersCharacterOnNewPosition = player.getCharacterByPosition(newPosition);
+		Character opponentsCharacterOnNewPosition = opponent.getCharacterByPosition(newPosition);
 		
 		//check if position is occupied by player
-		if(playersCharacter != null) {
+		if(playersCharacterOnNewPosition != null) {
 			return false;
 		}
 		
 		boolean returnValue = false;
 		
 		//check if position is occupied by opponent		
-		if(opponentsCharacter != null) {
-			if(this.fight(playersCharacter, opponentsCharacter, player, opponent, tempPosition) == true) {
+		if(opponentsCharacterOnNewPosition != null) {
+			
+			if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent)) {
 				returnValue = true;
+				
 			}else {
 				returnValue = false;
 			}
+			
+		}else {
+			
+			this.setPosition(newPosition);
+			returnValue = true;
 		}
 		
 		return returnValue;
 		
 	}
 	
-	public boolean fight(Character playersCharacter, Character opponentsCharacter, Player player, Player opponent, int[] tempPosition) {
+	public boolean fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
 		
 		boolean returnValue = false;
 		
-		if(playersCharacter.getRank() > opponentsCharacter.getRank()) {
-			playersCharacter.setPosition(tempPosition);
-			opponent.getCharacters().remove(opponentsCharacter);
+		if(this.getRank() > opponentsCharacterOnNewPosition.getRank()) {
+			this.setPosition(newPosition);
+			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
 			returnValue = true;
-		}else {
-			opponentsCharacter.setPosition(tempPosition);
-			player.getCharacters().remove(playersCharacter);
+			
+		}else if(this.getRank() == opponentsCharacterOnNewPosition.getRank()){
+			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
+			player.getCharacters().remove(this);
+			returnValue = false;
+		}
+		
+		else {
+			opponentsCharacterOnNewPosition.setPosition(newPosition);
+			player.getCharacters().remove(this);
 			returnValue = false;
 		}
 		
