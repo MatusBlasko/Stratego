@@ -1,6 +1,7 @@
 package character;
 
 import game.Character;
+import game.Player;
 
 public class Flag extends Character {
 	
@@ -8,6 +9,12 @@ public class Flag extends Character {
 		setName("Flag");
 		//setRank();
 		setPosition(position);
-		setSpecial(null);
+		setSpecial(1);
+	}	
+	
+	public boolean move(Player player, Player opponent, int destination) {
+		
+		return false;
+		
 	}	
 }

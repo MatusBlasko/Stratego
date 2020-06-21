@@ -8,6 +8,6 @@ public class Colonel extends Character {
 		setName("Colonel");
 		setRank(8);
 		setPosition(position);
-		setSpecial(null);
+		setSpecial(0);
 	}	
 }
