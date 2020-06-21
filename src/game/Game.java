@@ -19,8 +19,12 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	
-	private static Game instance = null;
+	private static Game instance = new Game();
 
+	private Game(){
+		
+	}
+	
     public static Game getInstance(){
     if(instance == null){
         instance = new Game();
