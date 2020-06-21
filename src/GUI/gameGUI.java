@@ -9,8 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.Game;
+import game.Player;
+
 
 public class gameGUI  extends JPanel{
+
 	private CardLayout cl;
 	private JPanel north = new JPanel();
 	private Board center = new Board();
@@ -18,10 +21,10 @@ public class gameGUI  extends JPanel{
 	JLabel spieler1Name = new JLabel("bruno");
 	JLabel spiele2Name = new JLabel("man");
 	JLabel turnLabel = new JLabel("Rot ist am Zug");
+
 	
 	
-	
-	gameGUI(CardLayout cl){
+	gameGUI(CardLayout cl){	
 		this.cl = cl;
 
 		turnLabel.setHorizontalAlignment(JLabel.CENTER);
