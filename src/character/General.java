@@ -8,6 +8,6 @@ public class General extends Character {
 		setName("General");
 		setRank(9);
 		setPosition(position);
-		setSpecial(null);
+		setSpecial(0);
 	}
 }

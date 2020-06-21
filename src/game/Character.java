@@ -7,7 +7,7 @@ public abstract class Character {
 	private String name;
 	private int rank;
 	private int[] position;
-	private ArrayList<Integer> special;
+	private int special;
 	
 	/**
 	 * Get Name
@@ -57,20 +57,20 @@ public abstract class Character {
 		this.position = position;
 	}
 	
-	public ArrayList<Integer> getSpecial() {
+	public int getSpecial() {
 		return special;
 	}
 	
-	public void setSpecial(ArrayList<Integer> special) {
+	public void setSpecial(int special) {
 		this.special = special;
 	}
 	
 	/**
-	 * 
-	 * @param player
-	 * @param opponent
-	 * @param destination
-	 * @return flase if occupied by player, null if occupied by opponent and true if free
+	 * Moves characters
+	 * @param player player
+	 * @param opponent opponent player
+	 * @param destination destination where character should be moved
+	 * @return true or false if move was successful or not
 	 */
 	public boolean move(Player player, Player opponent, int destination) {
 		
@@ -116,6 +116,14 @@ public abstract class Character {
 		
 	}
 	
+	/**
+	 * Fights if destination is occupied by opponent
+	 * @param opponentsCharacterOnNewPosition opponents character on new position
+	 * @param newPosition new position
+	 * @param player player
+	 * @param opponent opponent player
+	 * @return true or false if fight was successful or not
+	 */
 	public boolean fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
 		
 		boolean returnValue = false;
