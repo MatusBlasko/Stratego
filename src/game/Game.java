@@ -19,6 +19,7 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	
+	
 	private static Game instance = new Game();
 
 	private Game(){
@@ -63,7 +64,7 @@ public class Game {
 		playerOneList.add(new Fieldmarshal(new int[] {7, 9}));
 		
 		//Initialize PlayerTwo characters
-		playerTwoList.add(new Flag(new int[] {9, 9}));
+		playerTwoList.add(new Flag(new int[] {9, 0}));
 		
 		playerTwoList.add(new Bomb(new int[] {8, 1}));
 		playerTwoList.add(new Bomb(new int[] {4, 1}));
@@ -91,7 +92,7 @@ public class Game {
 		playerTwoList.add(new Fieldmarshal(new int[] {2, 0}));
 		
 		this.playerOne = new Player(playerOneName, playerOneList);
-		this.playerTwo = new Player(playerTwoName, playerOneList);
+		this.playerTwo = new Player(playerTwoName, playerTwoList);
 	}
 	
 	/**

@@ -55,7 +55,7 @@ public class Player {
 			if(Arrays.equals(charcater.getPosition(), position)) {
 				return charcater;
 			}else {
-				
+				return null;
 			}
 		}
 		return null;

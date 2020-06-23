@@ -4,6 +4,8 @@ package GUI;
 import java.awt.Color;
 	import java.awt.Graphics;
 import java.awt.Stroke;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -13,11 +15,11 @@ import game.Character;
 import game.Game;
 import game.Player;
 	
-public class Board extends JPanel{
+public class Board extends JPanel implements MouseListener{
 	
 
-	private Player p1 = Game.getInstance().getPlayerOne();
-	private Player p2 = Game.getInstance().getPlayerTwo();
+	//private Player p1 = Game.getInstance().getPlayerOne();
+	//private Player p2 = Game.getInstance().getPlayerTwo();
 	
 	private int startX = 0;
 	private int startY = 0;
@@ -67,20 +69,66 @@ public class Board extends JPanel{
 	    } 
 	    
 	    public void paintP1Figures(Graphics g) {
-	    	//ArrayList<game.Character> Characters = this.p1.getCharacters();
-	    	/*for (game.Character character : Characters) {
+	    	ArrayList<game.Character> Characters = Game.getInstance().getPlayerOne().getCharacters();
+	    	for (game.Character character : Characters) {
 	    		int [] chPosition = character.getPosition();
-                g.setColor(Color.blue);
-                g.fillRect(chPosition[0] , chPosition[1], tileWidth, tileHeight);
+                g.setColor(Color.red);
+                g.fillRect(chPosition[0]*tileWidth , chPosition[1]*tileHeight, tileWidth, tileHeight);
                 g.setColor(Color.black);
-                g.drawRect(chPosition[0], chPosition[1], tileWidth, tileHeight);
+                g.drawRect(chPosition[0]*tileWidth, chPosition[1]*tileHeight, tileWidth, tileHeight);
 	    	 }
-	    	*/
+	    	
 	    	
 	    } 
 	    
 	    public void paintP2Figures(Graphics g) {
+	    	ArrayList<game.Character> Characters = Game.getInstance().getPlayerTwo().getCharacters();
+	    	for (game.Character character : Characters) {
+	    		int [] chPosition = character.getPosition();
+                g.setColor(Color.blue);
+                g.fillRect(chPosition[0]*tileWidth , chPosition[1]*tileHeight, tileWidth, tileHeight);
+                g.setColor(Color.black);
+                g.drawRect(chPosition[0]*tileWidth, chPosition[1]*tileHeight, tileWidth, tileHeight);
+	    	 }
+	    }
+
+	    public void mouseClicked(MouseEvent e) {
+	    	int[] position = new int[2];
+	    	position[0] = (startX - e.getX())/tileWidth;
+	    	position[1] = (startY - e.getY())/tileHeight;
+	    	Character character = Game.getInstance().getPlayerOne().getCharacterByPosition(position);
 	    	
-	    } 
+	    	if(character == null){
+	    		character = Game.getInstance().getPlayerTwo().getCharacterByPosition(position);
+	    	}
+	    	
+	      }
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		} 
+	    
+	    
+	    
 
 }
