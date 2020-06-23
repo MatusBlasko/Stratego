@@ -72,7 +72,7 @@ public abstract class Character {
 	 * @param destination destination where character should be moved
 	 * @return true or false if move was successful or not
 	 */
-	public boolean move(Player player, Player opponent, int destination) {
+	public int move(Player player, Player opponent, int destination) {
 		
 		//initialize new position
 		int[] newPosition = this.getPosition().clone();
@@ -90,26 +90,37 @@ public abstract class Character {
 		Character opponentsCharacterOnNewPosition = opponent.getCharacterByPosition(newPosition);
 		
 		//check if position is occupied by player
+		//if occupied by player
 		if(playersCharacterOnNewPosition != null) {
-			return false;
+			return 1;
 		}
 		
-		boolean returnValue = false;
+		int returnValue = 2;
 		
 		//check if position is occupied by opponent		
 		if(opponentsCharacterOnNewPosition != null) {
 			
-			if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent)) {
-				returnValue = true;
+			//if fight won
+			if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 0) {
+				returnValue = 2;
 				
-			}else {
-				returnValue = false;
+			//if fight draw	
+			}else if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 1) {
+				returnValue = 3;
+			
+			//if fight lost	
+			}else if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 2) {
+				returnValue = 4;	
+				
+			//if flag
+			}else if (this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 3){
+				returnValue = 5;
 			}
 			
+		//if free 	
 		}else {
-			
 			this.setPosition(newPosition);
-			returnValue = true;
+			returnValue = 0;
 		}
 		
 		return returnValue;
@@ -124,25 +135,28 @@ public abstract class Character {
 	 * @param opponent opponent player
 	 * @return true or false if fight was successful or not
 	 */
-	public boolean fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
+	public int fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
 		
-		boolean returnValue = false;
+		int returnValue = 0;
 		
+		//if fight won
 		if(this.getRank() > opponentsCharacterOnNewPosition.getRank()) {
 			this.setPosition(newPosition);
 			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
-			returnValue = true;
+			returnValue = 0;
 			
+		//if fight draw	
 		}else if(this.getRank() == opponentsCharacterOnNewPosition.getRank()){
 			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
 			player.getCharacters().remove(this);
-			returnValue = false;
+			returnValue = 1;
 		}
 		
+		//if fight lost
 		else {
 			opponentsCharacterOnNewPosition.setPosition(newPosition);
 			player.getCharacters().remove(this);
-			returnValue = false;
+			returnValue = 2;
 		}
 		
 		return returnValue;

@@ -12,9 +12,9 @@ public class Flag extends Character {
 		setSpecial(1);
 	}	
 	
-	public boolean move(Player player, Player opponent, int destination) {
+	public int move(Player player, Player opponent, int destination) {
 		
-		return false;
+		return 3;
 		
 	}	
 }

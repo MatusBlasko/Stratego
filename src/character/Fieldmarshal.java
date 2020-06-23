@@ -12,15 +12,17 @@ public class Fieldmarshal extends Character {
 		setSpecial(5);
 	}
 	
-	public boolean fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
+	public int fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
 		
-		boolean returnValue = false;
+		int returnValue = 0;
 		
+		//if spy
 		if(opponentsCharacterOnNewPosition.getSpecial() == 3) {
 			this.setPosition(newPosition);
 			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
-			returnValue = true;
+			returnValue = 2;
 			
+		//if not	
 		}else{
 			returnValue = super.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent);	
 		}

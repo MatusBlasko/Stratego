@@ -12,15 +12,17 @@ public class Mineur extends Character {
 		setSpecial(4);
 	}
 	
-	public boolean fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
+	public int fight(Character opponentsCharacterOnNewPosition, int[] newPosition, Player player, Player opponent) {
 		
-		boolean returnValue = false;
+		int returnValue = 0;
 		
+		//if bomb
 		if(opponentsCharacterOnNewPosition.getSpecial() == 2) {
 			this.setPosition(newPosition);
 			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
-			returnValue = true;
-			
+			returnValue = 0;
+		
+		//if not
 		}else{
 			returnValue = super.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent);	
 		}

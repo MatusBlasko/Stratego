@@ -12,9 +12,9 @@ public class Bomb extends Character {
 		setSpecial(2);
 	}	
 	
-	public boolean move(Player player, Player opponent, int destination) {
+	public int move(Player player, Player opponent, int destination) {
 	
-		return false;
+		return 1;
 		
 	}	
 }
