@@ -124,6 +124,7 @@ public class Board extends JPanel implements MouseListener{
 	    			if(result != 1) {
 	    				Game.getInstance().setLastSelectedPosition(null);
 	    				Game.getInstance().changePlayerTurn();
+	    				repaint();
 	    			}if(result == 1) {
 		    			Game.getInstance().setLastSelectedPosition(position);
 	    			}
@@ -141,6 +142,7 @@ public class Board extends JPanel implements MouseListener{
 	    			if(result != 1) {
 	    				Game.getInstance().setLastSelectedPosition(null);
 	    				Game.getInstance().changePlayerTurn();
+	    				repaint();
 	    			}if(result == 1) {
 		    			Game.getInstance().setLastSelectedPosition(position);
 	    			}
