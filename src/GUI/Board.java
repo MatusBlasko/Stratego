@@ -105,6 +105,10 @@ public class Board extends JPanel implements MouseListener{
 	    		 character = Game.getInstance().getPlayerTwo().getCharacterByPosition(position);
 	    	}
 	    	
+	    	if(character != null) {
+	    		System.out.println(character.getName());
+	    	}
+	    	
 	    	System.out.println(Game.getInstance().getPlayerTurn());
 	    	if(character == null && Game.getInstance().getLastSelectedPosition() == null){
 	    		System.out.println("i got here 2");

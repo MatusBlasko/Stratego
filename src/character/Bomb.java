@@ -12,7 +12,7 @@ public class Bomb extends Character {
 		setSpecial(2);
 	}	
 	
-	public int move(Player player, Player opponent, int destination) {
+	public int move(Player player, Player opponent, int[] destination) {
 	
 		return 1;
 		
