@@ -26,7 +26,6 @@ public class Board extends JPanel implements MouseListener{
 	
 	private int tileWidth = 50;
 	private int tileHeight = 50;
-	 
 	private ArrayList<Character> characters;
 
 
@@ -94,12 +93,37 @@ public class Board extends JPanel implements MouseListener{
 
 	    public void mouseClicked(MouseEvent e) {
 	    	int[] position = new int[2];
-	    	position[0] = (startX - e.getX())/tileWidth;
-	    	position[1] = (startY - e.getY())/tileHeight;
+	    	position[0] = (int) ((long) (e.getX() - startX)/tileWidth);
+	    	position[1] = (int) ((long) (e.getY() - startY)/tileHeight);
+	    	System.out.println(position[0] + "," + position[1]);
 	    	Character character = Game.getInstance().getPlayerOne().getCharacterByPosition(position);
 	    	
 	    	if(character == null){
+	    		System.out.println("i got here 1");
 	    		character = Game.getInstance().getPlayerTwo().getCharacterByPosition(position);
+	    		if(character == null && Game.getInstance().getLastSelectedCharacter() == null){
+		    		System.out.println("i got here 2");
+	    			return;
+	    		}
+	    		if(Game.getInstance().getLastSelectedCharacter() == null) {
+		    		System.out.println("i got here 3");
+	    			Game.getInstance().setLastSelectedCharacter(character);
+	    		}else {
+		    		System.out.println("i got here 4");
+		    		Game.getInstance().getLastSelectedCharacter();
+	    			System.out.println(Game.getInstance().getLastSelectedCharacter().move(Game.getInstance().getPlayerTwo(), Game.getInstance().getPlayerOne(), position));
+	    			Game.getInstance().setLastSelectedCharacter(character);
+	    		}
+	    	}else {
+	    		System.out.println("i got here 5");
+	    		if(Game.getInstance().getLastSelectedCharacter() == null) {
+		    		System.out.println("i got here 6");
+	    			Game.getInstance().setLastSelectedCharacter(character);
+	    		}else {
+		    		System.out.println("i got here 7");
+	    			System.out.println(character.move(Game.getInstance().getPlayerOne(), Game.getInstance().getPlayerTwo(), position));
+	    			Game.getInstance().setLastSelectedCharacter(character);
+	    		}
 	    	}
 	    	
 	      }
@@ -107,25 +131,25 @@ public class Board extends JPanel implements MouseListener{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		} 
 	    
 	    

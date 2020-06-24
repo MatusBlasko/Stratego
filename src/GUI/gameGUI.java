@@ -2,6 +2,7 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -12,7 +13,7 @@ import game.Game;
 import game.Player;
 
 
-public class gameGUI  extends JPanel{
+public class gameGUI  extends JPanel {
 
 	private CardLayout cl;
 	private JPanel north = new JPanel();
@@ -24,10 +25,14 @@ public class gameGUI  extends JPanel{
 
 	
 	
+	
+	
 	gameGUI(CardLayout cl){	
 		this.cl = cl;
 
 		turnLabel.setHorizontalAlignment(JLabel.CENTER);
+		
+		spieler1Name.setPreferredSize(new Dimension(100,100));
 		
 		north.setLayout(new BorderLayout());
 		north.add(turnLabel,BorderLayout.CENTER);
@@ -37,6 +42,8 @@ public class gameGUI  extends JPanel{
 		setLayout(new BorderLayout());
 		add(north,BorderLayout.NORTH);
 		add(center,BorderLayout.CENTER);
+		
+		center.addMouseListener(center);
 	}
 	
 }

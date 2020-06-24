@@ -72,22 +72,27 @@ public abstract class Character {
 	 * @param destination destination where character should be moved
 	 * @return true or false if move was successful or not
 	 */
-	public int move(Player player, Player opponent, int destination) {
+	public int move(Player player, Player opponent, int[] destination) {
 		
 		//initialize new position
-		int[] newPosition = this.getPosition().clone();
+		int[] position = this.getPosition().clone();
+		
+		if(!(position[0] == destination[0] && position[1]-1 == destination[1] || position[0] == destination[0] && position[1]+1 == destination[1] || position[0]-1 == destination[0] && position[1] == destination[1] || position[0]+1 == destination[0] && position[1] == destination[1])) {
+			return 1;
+		}
 		
 		//calculate new position
+		/*
 		switch(destination) {
 			case 0: newPosition[1] = newPosition[1]+1; break;
 			case 1: newPosition[0] = newPosition[0]+1; break;
 			case 2: newPosition[1] = newPosition[1]-1; break;
 			case 3: newPosition[0] = newPosition[0]-1; break;
 		}
-		
+		*/
 		//get Characters
-		Character playersCharacterOnNewPosition = player.getCharacterByPosition(newPosition);
-		Character opponentsCharacterOnNewPosition = opponent.getCharacterByPosition(newPosition);
+		Character playersCharacterOnNewPosition = player.getCharacterByPosition(destination);
+		Character opponentsCharacterOnNewPosition = opponent.getCharacterByPosition(destination);
 		
 		//check if position is occupied by player
 		//if occupied by player
@@ -101,25 +106,25 @@ public abstract class Character {
 		if(opponentsCharacterOnNewPosition != null) {
 			
 			//if fight won
-			if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 0) {
+			if(this.fight(opponentsCharacterOnNewPosition, destination, player, opponent) == 0) {
 				returnValue = 2;
 				
 			//if fight draw	
-			}else if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 1) {
+			}else if(this.fight(opponentsCharacterOnNewPosition, destination, player, opponent) == 1) {
 				returnValue = 3;
 			
 			//if fight lost	
-			}else if(this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 2) {
+			}else if(this.fight(opponentsCharacterOnNewPosition, destination, player, opponent) == 2) {
 				returnValue = 4;	
 				
 			//if flag
-			}else if (this.fight(opponentsCharacterOnNewPosition, newPosition, player, opponent) == 3){
+			}else if (this.fight(opponentsCharacterOnNewPosition, destination, player, opponent) == 3){
 				returnValue = 5;
 			}
 			
 		//if free 	
 		}else {
-			this.setPosition(newPosition);
+			this.setPosition(destination);
 			returnValue = 0;
 		}
 		

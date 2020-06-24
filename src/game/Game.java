@@ -19,6 +19,9 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	
+	private Character lastSelectedCharacter = null;
+	private String playerTurn= "red";
+	
 	
 	private static Game instance = new Game();
 
@@ -107,5 +110,25 @@ public class Game {
 	 */
 	public Player getPlayerTwo() {
 		return playerTwo;
+	}
+
+	public Character getLastSelectedCharacter() {
+		return lastSelectedCharacter;
+	}
+
+	public void setLastSelectedCharacter(Character lastSelectedCharacter) {
+		this.lastSelectedCharacter = lastSelectedCharacter;
+	}
+
+	public String getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void changePlayerTurn() {
+		if(this.playerTurn == "red"){
+			this.playerTurn = "blue";
+		}else {
+			this.playerTurn = "red";
+		}
 	}
 }

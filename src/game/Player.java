@@ -50,12 +50,12 @@ public class Player {
 	 */
 	public Character getCharacterByPosition(int[] position) {
 		
-		for (Character charcater : characters) {
+		for (Character characater : characters) {
+			int[] characaterPosition = characater.getPosition();
 			
-			if(Arrays.equals(charcater.getPosition(), position)) {
-				return charcater;
+			if(Arrays.equals(characaterPosition, position)) {
+				return characater;
 			}else {
-				return null;
 			}
 		}
 		return null;
