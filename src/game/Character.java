@@ -164,6 +164,13 @@ public abstract class Character {
 			returnValue = 2;
 		}
 		
+		//if flag
+		if(opponentsCharacterOnNewPosition.getSpecial()==1){
+			this.setPosition(newPosition);
+			opponent.getCharacters().remove(opponentsCharacterOnNewPosition);
+			returnValue = 3;
+		}
+		
 		return returnValue;
 		
 	}

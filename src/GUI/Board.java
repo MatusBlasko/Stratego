@@ -111,26 +111,32 @@ public class Board extends JPanel implements MouseListener{
 	    	
 	    	System.out.println(Game.getInstance().getPlayerTurn());
 	    	if(character == null && Game.getInstance().getLastSelectedPosition() == null){
-	    		System.out.println("i got here 2");
     			return;
 	    	}else{
-	    	System.out.println("i got here 1");
     		if(Game.getInstance().getPlayerTurn() == "blue") {
 	    
 	    		if(Game.getInstance().getLastSelectedPosition() == null) {
-		    		System.out.println("i got here 3");
 	    			Game.getInstance().setLastSelectedPosition(position);
 	    		}else {
 	    			Character lastSelectedCharacter = Game.getInstance().getPlayerTwo().getCharacterByPosition(Game.getInstance().getLastSelectedPosition());
-		    		System.out.println("i got here 4");
-		    		Game.getInstance().getLastSelectedPosition();
+	    			if(lastSelectedCharacter == null) {
+	    				Game.getInstance().setLastSelectedPosition(position);
+	    				return;
+	    			}
 	    			int result = lastSelectedCharacter.move(Game.getInstance().getPlayerTwo(), Game.getInstance().getPlayerOne(), position);
-	    			if(result != 1) {
+	    			if(result != 1 && result != 5) {
 	    				Game.getInstance().setLastSelectedPosition(null);
 	    				Game.getInstance().changePlayerTurn();
 	    				System.out.println(Game.getInstance().getLastSelectedPosition());
 	    				repaint();
-	    			}if(result == 1) {
+	    			}else if(result == 5) {
+	    				System.out.println("Won");
+	    				Game.getInstance().setLastSelectedPosition(null);
+	    				Game.getInstance().changePlayerTurn();
+	    				System.out.println(Game.getInstance().getLastSelectedPosition());
+	    				repaint();
+	    			}	    			
+	    			else if(result == 1) {
 		    			Game.getInstance().setLastSelectedPosition(position);
 	    			}
 	    			Game.getInstance().setLastSelectedPosition(position);
@@ -138,21 +144,25 @@ public class Board extends JPanel implements MouseListener{
     		}else if(Game.getInstance().getPlayerTurn() == "red") {
     			
 	    		if(Game.getInstance().getLastSelectedPosition() == null) {
-		    		System.out.println("i got here 6");
 	    			Game.getInstance().setLastSelectedPosition(position);
 	    		}else {
-		    		System.out.println("i got here 7");
 	    			Character lastSelectedCharacter = Game.getInstance().getPlayerOne().getCharacterByPosition(Game.getInstance().getLastSelectedPosition());
 	    			if(lastSelectedCharacter == null) {
 	    				Game.getInstance().setLastSelectedPosition(position);
 	    				return;
 	    			}
 	    			int result = lastSelectedCharacter.move(Game.getInstance().getPlayerOne(), Game.getInstance().getPlayerTwo(), position);
-	    			if(result != 1) {
+	    			if(result != 1 && result != 5) {
 	    				Game.getInstance().setLastSelectedPosition(null);
 	    				Game.getInstance().changePlayerTurn();
 	    				repaint();
-	    			}if(result == 1) {
+	    			}else if(result == 5) {
+	    				System.out.println("Won");
+	    				Game.getInstance().setLastSelectedPosition(null);
+	    				Game.getInstance().changePlayerTurn();
+	    				repaint();
+	    			}	    			
+	    			else if(result == 1) {
 		    			Game.getInstance().setLastSelectedPosition(position);
 	    			}
 	    		}

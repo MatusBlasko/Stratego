@@ -14,7 +14,7 @@ public class Flag extends Character {
 	
 	public int move(Player player, Player opponent, int[] destination) {
 		
-		return 3;
+		return 1;
 		
 	}	
 }
