@@ -19,8 +19,8 @@ public class Game {
 	private Player playerOne;
 	private Player playerTwo;
 	
-	private Character lastSelectedCharacter = null;
-	private String playerTurn= "red";
+	private int[] lastSelectedPosition = null;
+	String playerTurn = "red";
 	
 	
 	private static Game instance = new Game();
@@ -112,16 +112,16 @@ public class Game {
 		return playerTwo;
 	}
 
-	public Character getLastSelectedCharacter() {
-		return lastSelectedCharacter;
+	public int[] getLastSelectedPosition() {
+		return lastSelectedPosition;
 	}
 
-	public void setLastSelectedCharacter(Character lastSelectedCharacter) {
-		this.lastSelectedCharacter = lastSelectedCharacter;
+	public void setLastSelectedPosition(int[] lastSelectedPosition) {
+		this.lastSelectedPosition = lastSelectedPosition;
 	}
-
+	
 	public String getPlayerTurn() {
-		return playerTurn;
+		return this.playerTurn;
 	}
 
 	public void changePlayerTurn() {
